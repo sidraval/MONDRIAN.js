@@ -1,0 +1,11 @@
+html, body, div, section, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.group:after {
+  display: block;
+  content: "";
+  clear: both;
+}

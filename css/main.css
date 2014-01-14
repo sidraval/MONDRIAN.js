@@ -1,0 +1,50 @@
+section.columns {
+  width: 600px;
+  height: 20px;
+  margin-left: 20px;
+}
+
+section.canvas {
+  width: 600px;
+  height: 600px;
+  float: left;
+}
+
+section.rows {
+  height: 600px;
+  width: 20px;
+  float: left;
+}
+
+.column-box {
+  width: 20px;
+  height: 20px;
+  float: left;
+  text-align: center;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.box {
+  width: 20px;
+  height: 20px;
+  float: left;
+  background: rgb(245, 249, 250);
+  transition: all 0.5s;
+}
+
+.yellow {
+  background: rgb(252,198,1);
+}
+
+.red {
+    background: rgb(213,0,0);
+}
+
+.blue {
+    background: rgb(3, 94, 174);
+}
+
+.gray {
+  background: rgb(245, 249, 250);
+}
