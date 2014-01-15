@@ -33,6 +33,11 @@ section.rows {
   font-family: 'Lato', sans-serif;
 }
 
+.axis:hover {
+  color: white;
+  background: #333;
+}
+
 .column-box {
 }
 
@@ -40,7 +45,7 @@ section.rows {
 }
 
 .wrapper {
-  width: 620px;
+  width: 640px;
   margin: 0px auto;
 }
 
@@ -74,4 +79,8 @@ section.rows {
 
 .white {
   background: white;
+}
+
+#clear {
+  cursor: pointer;
 }
