@@ -23,13 +23,19 @@ section.rows {
   text-align: center;
   font-size: 11px;
   cursor: pointer;
+/*  transition: all 0.5s;
+*/}
+
+.column-box:hover {
+  background: black;
+  color: white;
 }
 
 .box {
   width: 20px;
   height: 20px;
   float: left;
-  background: rgb(245, 249, 250);
+  background: white;
   transition: all 0.5s;
 }
 
@@ -47,4 +53,12 @@ section.rows {
 
 .gray {
   background: rgb(245, 249, 250);
+}
+
+.pink {
+  background: cyan;
+}
+
+.white {
+  background: white;
 }
