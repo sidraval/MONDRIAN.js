@@ -46,6 +46,7 @@
       var $target = $(event.currentTarget);
       var targetIndex = $target.data("id");
       var delay = 0;
+      var flip = $target.parent().hasClass('right') ? true : false
 
       $(".box").each(function(index, box) {
         var $box = $(box)
@@ -55,19 +56,33 @@
         }
       });
 
+      var boxes = [];
+
       $(".box").each(function(index, box) {
         var $box = $(box);
-        var random = (Math.floor(Math.random() * MONDRIAN.probabilityToStop));
+        // var random = (Math.floor(Math.random() * MONDRIAN.probabilityToStop));
 
         if ($box.data("id")[i] == targetIndex) {
-          delay += MONDRIAN.delay;
-          createTimer($box, delay/4.0);
-
-          if (random == 13) {
-            return false;
+          if (flip) {
+            boxes.unshift($box);
+          } else {
+            boxes.push($box);
           }
         }
       })
+
+      boxes.every(function(box) {
+        var random = (Math.floor(Math.random() * MONDRIAN.probabilityToStop));
+
+        delay += MONDRIAN.delay;
+        createTimer(box, delay/4.0);
+
+        if (random == 13) {
+          return false;
+        } else {
+          return true;
+        }
+      });
     });
   }
 
