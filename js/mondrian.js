@@ -131,7 +131,7 @@
 
   $(function() {
     MONDRIAN.probabilityToStop = 30;
-    MONDRIAN.delay = 50;
+    MONDRIAN.delay = 100;
 
     generateCanvas();
     bindHandlers();

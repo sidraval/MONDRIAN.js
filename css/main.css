@@ -84,3 +84,7 @@ section.rows {
 #clear {
   cursor: pointer;
 }
+
+#clear:active {
+  color: lightgreen;
+}
