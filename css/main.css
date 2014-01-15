@@ -1,3 +1,10 @@
+h1 {
+  font-family: 'Abel', sans-serif;
+  font-size: 92px;
+  text-align: center;
+  color: #333;
+}
+
 section.columns {
   width: 600px;
   height: 20px;
@@ -16,19 +23,25 @@ section.rows {
   float: left;
 }
 
-.column-box {
+.axis {
   width: 20px;
   height: 20px;
   float: left;
   text-align: center;
   font-size: 11px;
   cursor: pointer;
-/*  transition: all 0.5s;
-*/}
+  font-family: 'Lato', sans-serif;
+}
 
-.column-box:hover {
-  background: black;
-  color: white;
+.column-box {
+}
+
+.row-box {
+}
+
+.wrapper {
+  width: 620px;
+  margin: 0px auto;
 }
 
 .box {
@@ -55,8 +68,8 @@ section.rows {
   background: rgb(245, 249, 250);
 }
 
-.pink {
-  background: cyan;
+.highlight {
+  background: #ccc;
 }
 
 .white {
