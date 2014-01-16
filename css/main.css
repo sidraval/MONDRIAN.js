@@ -81,6 +81,10 @@ section.rows {
   background: white;
 }
 
+.selected {
+  background: pink;
+}
+
 #clear {
   cursor: pointer;
 }

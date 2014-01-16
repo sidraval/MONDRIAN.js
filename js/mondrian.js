@@ -32,10 +32,31 @@
 
   var bindHandlers = MONDRIAN.bindHandlers = function() {
     bindAxisSelectors();
+    bindClickAndDrag();
     bindGenerator('.columns');
     bindGenerator('.rows');
 
     $("#clear").on("click", function() { reset(); });
+  }
+
+  var bindClickAndDrag = MONDRIAN.bindClickAndDrag = function() {
+    $(".canvas").on("mousedown", ".box", function(event) {
+      var $initial = $(event.currentTarget);
+
+      $initial.addClass("selected");
+
+      $(".canvas").on("mouseenter", ".box", function(event) {
+        var $hovered = $(event.currentTarget);
+
+        $hovered.addClass("selected");
+      });
+    });
+
+    $("body").on("mouseup", function(event) {
+      console.log($(event.currentTarget).data("id"));
+
+      $(".canvas").off("mouseenter", ".box");
+    })
   }
 
   var bindGenerator = MONDRIAN.bindGenerator = function(orientation) {
