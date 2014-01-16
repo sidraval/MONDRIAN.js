@@ -6,3 +6,7 @@ A small piece of JS code to generate art similar in style to [Piet Mondrian's][m
 [mondrian]: http://en.wikipedia.org/wiki/Piet_Mondrian
 [woogie]: http://en.wikipedia.org/wiki/Broadway_Boogie-Woogie
 [deploy]: http://sidraval.github.io/MONDRIAN.js/
+
+## Todo
+* When re-generating a row or column, don't get rid of colored blocks that are part of _another_ row/column.
+* Click and drag to select an n by n block that can be colored.
