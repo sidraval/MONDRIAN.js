@@ -42,19 +42,37 @@
   var bindClickAndDrag = MONDRIAN.bindClickAndDrag = function() {
     $(".canvas").on("mousedown", ".box", function(event) {
       var $initial = $(event.currentTarget);
+      var irow = $initial.data("id")[0];
+      var icol = $initial.data("id")[1];
 
       $initial.addClass("selected");
 
       $(".canvas").on("mouseenter", ".box", function(event) {
         var $hovered = $(event.currentTarget);
 
-        $hovered.addClass("selected");
+        var hrow = $hovered.data("id")[0];
+        var hcol = $hovered.data("id")[1];
+
+        $(".selected").each(function(index, box) {
+          $(box).removeClass("selected");
+        })
+
+        var idx = irow <= hrow ? irow : hrow
+        var jdx = irow <= hrow ? hrow : irow
+
+        var kdx = icol <= hcol ? icol : hcol
+        var ldx = icol <= hcol ? hcol : icol
+
+        for(var i = idx; i <= jdx; i++) {
+          for(var j = kdx; j <= ldx; j++) {
+            // var $box = $(".box[data-id='[" + i + "," + j + "]']")
+            $(".box[data-id='[" + i + "," + j + "]']").addClass('selected');
+          }
+        }
       });
     });
 
     $("body").on("mouseup", function(event) {
-      console.log($(event.currentTarget).data("id"));
-
       $(".canvas").off("mouseenter", ".box");
     })
   }
