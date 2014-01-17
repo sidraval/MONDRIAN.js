@@ -45,7 +45,21 @@
       var irow = $initial.data("id")[0];
       var icol = $initial.data("id")[1];
 
-      $initial.addClass("selected");
+      $("body").on("click", ".paint", function(event) {
+        $target = $(event.currentTarget);
+
+        var newClass = $target.attr('class').replace(" paint", "");
+
+        $(".selected").attr('class',"box " + newClass);
+      });
+
+      $(".canvas").on("click", ".box", function(event) {
+        $(".selected").each(function(index, box) {
+          $(box).removeClass("selected");
+        });
+
+        $(".box[data-id='[" + irow + "," + icol + "]']").addClass('selected');
+      });
 
       $(".canvas").on("mouseenter", ".box", function(event) {
         var $hovered = $(event.currentTarget);
@@ -74,6 +88,7 @@
 
     $("body").on("mouseup", function(event) {
       $(".canvas").off("mouseenter", ".box");
+      // $(".canvas").off("click", ".box");
     })
   }
 

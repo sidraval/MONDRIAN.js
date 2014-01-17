@@ -15,6 +15,7 @@ section.canvas {
   width: 600px;
   height: 600px;
   float: left;
+  cursor: crosshair;
 }
 
 section.rows {
@@ -47,6 +48,27 @@ section.rows {
 .wrapper {
   width: 640px;
   margin: 0px auto;
+  position: relative;
+}
+
+.palette {
+  position: absolute;
+  left: 640px;
+  top: 20px;
+  width: 200px;
+}
+
+.paint {
+  width: 110px;
+  margin: 0px auto;
+  height: 50px;
+  cursor: pointer;
+}
+
+.palette h3 {
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 30px;
 }
 
 .box {
@@ -54,23 +76,27 @@ section.rows {
   height: 20px;
   float: left;
   background: white;
-  transition: all 0.5s;
+
 }
 
 .yellow {
   background: rgb(252,198,1);
+    transition: all 0.7s;
 }
 
 .red {
     background: rgb(213,0,0);
+      transition: all 0.7s;
 }
 
 .blue {
     background: rgb(3, 94, 174);
+      transition: all 0.7s;
 }
 
 .gray {
-  background: rgb(245, 249, 250);
+  background: rgb(235, 239, 240);
+    transition: all 0.7s;
 }
 
 .highlight {
@@ -83,6 +109,7 @@ section.rows {
 
 .selected {
   background: pink;
+  transition: none;
 }
 
 #clear {
