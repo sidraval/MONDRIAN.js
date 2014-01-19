@@ -100,7 +100,7 @@ section.rows {
 }
 
 .highlight {
-  background: #ccc;
+  background: #eee;
 }
 
 .white {
@@ -108,7 +108,7 @@ section.rows {
 }
 
 .selected {
-  background: pink;
+  background: #eef;
   transition: none;
 }
 

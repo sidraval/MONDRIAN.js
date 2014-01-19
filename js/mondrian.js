@@ -1,19 +1,10 @@
-// Generate body on ready
-// Function to toggle color class
-// Generate grid w/ [row, col] data-id and the axes numbered w/ data-id=#
-// Function to set a timer that captures scope
-// Hover binding for axes.
-// Click binding for boxes
-// Click binding for color chooser
-// Row/Column click to generate
-
 ;(function(root) {
 
   var MONDRIAN = root.MONDRIAN = (root.MONDRIAN || {});
 
   // Returns a string that represents a div holding the axis numbers
   var axisBox = MONDRIAN.axisBox = function(orientation, index) {
-    return "<div class='axis " + orientation + "-box' data-id='" + index +"'>" + (parseInt(index) + 1) + "</div>";
+    return "<div class='axis " + orientation + "-box' data-id='" + index +"'>" + "&bull;" + "</div>";
   }
 
   // Generate the axes and actual colorable grid.
@@ -92,6 +83,34 @@
     })
   }
 
+  var hasColoredNeighbors = MONDRIAN.hasColoredNeighbors = function(pos, orientation) {
+    var i = pos[0]
+    var j = pos[1]
+
+    var rright = $(".box[data-id='[" + (i + 1) + "," + j + "]']");
+    var rleft = $(".box[data-id='[" + (i - 1) + "," + j + "]']");
+    var cright = $(".box[data-id='[" + i + "," + (j + 1) + "]']");
+    var cleft = $(".box[data-id='[" + i + "," + (j - 1) + "]']");
+
+    if (orientation == ".columns") {
+      var neighbors = [rright, rleft];
+    } else {
+      var neighbors = [cright, cleft];
+    }
+
+    var result = false;
+
+    ["red", "yellow", "blue", "gray"].forEach(function(color) {
+      neighbors.forEach(function(box) {
+        if (box.hasClass(color)) {
+          result = true;
+        }
+      })
+    })
+
+    return result;
+  }
+
   var bindGenerator = MONDRIAN.bindGenerator = function(orientation) {
     var klass = orientation.slice(0,-1) + "-box";
     var i = orientation == ".columns" ? 1 : 0
@@ -106,7 +125,9 @@
         var $box = $(box)
 
         if ($box.data("id")[i] == targetIndex) {
-          $box.addClass("white");
+          if (!hasColoredNeighbors($box.data("id"))) {
+            $box.addClass("white");
+          }
         }
       });
 
