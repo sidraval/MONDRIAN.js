@@ -3,9 +3,13 @@
 <head>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="./js/mondrian.js"></script>
+  <script src="./js/intro.js"></script>
+
 
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/intro.css">
+
 
   <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
@@ -13,7 +17,20 @@
 
 <body>
   <h1>MONDRIAN.JS</h1>
+
   <div class="wrapper group">
+    <div class="tooltip rowcol">
+      <article class="topbar">
+        X
+      </article>
+      Click any of the numbers to generate a partial row or column of color.
+    </div>
+    <div class="tooltip clickanddrag">
+      <article class="topbar">
+        X
+      </article>
+      Click and drag inside the canvas to select a rectangle; use the palette at right to color it.
+    </div>
     <section class="columns group"></section>
 
     <section class="rows group"></section>

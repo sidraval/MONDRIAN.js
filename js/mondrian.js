@@ -4,7 +4,7 @@
 
   // Returns a string that represents a div holding the axis numbers
   var axisBox = MONDRIAN.axisBox = function(orientation, index) {
-    return "<div class='axis " + orientation + "-box' data-id='" + index +"'>" + "&bull;" + "</div>";
+    return "<div class='axis " + orientation + "-box' data-id='" + index +"'>" + index + "</div>";
   }
 
   // Generate the axes and actual colorable grid.
@@ -93,9 +93,9 @@
     var cleft = $(".box[data-id='[" + i + "," + (j - 1) + "]']");
 
     if (orientation == ".columns") {
-      var neighbors = [rright, rleft];
-    } else {
       var neighbors = [cright, cleft];
+    } else {
+      var neighbors = [rright, rleft];
     }
 
     var result = false;
@@ -125,7 +125,7 @@
         var $box = $(box)
 
         if ($box.data("id")[i] == targetIndex) {
-          if (!hasColoredNeighbors($box.data("id"))) {
+          if (!hasColoredNeighbors($box.data("id"), orientation)) {
             $box.addClass("white");
           }
         }
