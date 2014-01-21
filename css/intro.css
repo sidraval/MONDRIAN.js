@@ -1,0 +1,83 @@
+/*.tooltip {
+  position: absolute;
+  top: 25px;
+  left: -120px;
+  width: 100px;
+  border: 1px solid black;
+  padding: 5px;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.tooltip:before {
+  content: "X";
+  position: absolute;
+  padding-left: 100px;
+  margin-left: -6px;
+  margin-top: -25px;
+  display: block;
+  clear: both;
+  background: black;
+  color: white;
+  padding-right: 5px;
+  font-size: 10px;
+  height: 20px;
+  padding-top: 5px;
+}
+
+.tooltip:hover:before {
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #aaa;
+  cursor: pointer;
+  transition: all 0.5s;
+}*/
+
+.tooltip {
+  position: absolute;
+  border: 1px solid black;
+  padding: 5px;
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  background: lightyellow;
+}
+
+
+.tooltip:hover {
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #aaa;
+  transition: all 0.5s;
+}
+
+
+.rowcol {
+  top: 25px;
+  width: 100px;
+  left: -120px;
+  text-align: center;
+}
+
+.clickanddrag {
+  top: 225px;
+  width: 200px;
+  left: 200px;
+  text-align: center;
+}
+
+.topbar {
+  padding: 5px;
+  font-size: 10px;
+  color: lightyellow;
+  background: #333;
+  text-align: right;
+  color: white;
+  margin-left: -5px;
+  margin-top: -5px;
+  margin-bottom: 2px;
+  width: 100%;
+}
+
+.topbar:hover {
+  cursor: pointer;
+  color: red;
+}
