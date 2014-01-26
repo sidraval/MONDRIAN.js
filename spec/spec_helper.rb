@@ -10,7 +10,7 @@ require 'capybara/dsl'
 Capybara.configure do |config|
   config.run_server = false
   config.default_driver = :selenium
-  config.javascript_driver = :webkit
+  # config.javascript_driver = :webkit
   config.app = "Mondrian.js"
   config.app_host = "file://localhost/Users/ravals/Development/Mondrian.js/lib/"
 end
