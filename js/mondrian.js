@@ -21,13 +21,14 @@
     }
   }
 
+  // Binds axis selectors, row/column color generation, clear button.
   var bindHandlers = MONDRIAN.bindHandlers = function() {
     bindAxisSelectors();
     bindClickAndDrag();
     bindGenerator('.columns');
     bindGenerator('.rows');
 
-    $("#clear").on("click", function() { reset(); });
+    $("#clear").on("click", reset);
   }
 
   var bindClickAndDrag = MONDRIAN.bindClickAndDrag = function() {
@@ -36,6 +37,7 @@
       var irow = $initial.data("id")[0];
       var icol = $initial.data("id")[1];
 
+      // Colors selected area
       $("body").on("click", ".paint", function(event) {
         $target = $(event.currentTarget);
 
@@ -44,6 +46,7 @@
         $(".selected").attr('class',"box " + newClass);
       });
 
+      // Binds for single click selection (rather than click and drag)
       $(".canvas").on("click", ".box", function(event) {
         $(".selected").each(function(index, box) {
           $(box).removeClass("selected");
@@ -52,6 +55,7 @@
         $(".box[data-id='[" + irow + "," + icol + "]']").addClass('selected');
       });
 
+      // Main click and drag logic
       $(".canvas").on("mouseenter", ".box", function(event) {
         var $hovered = $(event.currentTarget);
 
@@ -62,6 +66,7 @@
           $(box).removeClass("selected");
         })
 
+        // For determining direction of drag
         var idx = irow <= hrow ? irow : hrow
         var jdx = irow <= hrow ? hrow : irow
 
@@ -70,19 +75,19 @@
 
         for(var i = idx; i <= jdx; i++) {
           for(var j = kdx; j <= ldx; j++) {
-            // var $box = $(".box[data-id='[" + i + "," + j + "]']")
             $(".box[data-id='[" + i + "," + j + "]']").addClass('selected');
           }
         }
       });
     });
 
+    // Unbinds click and drag handler when mouse is released
     $("body").on("mouseup", function(event) {
       $(".canvas").off("mouseenter", ".box");
-      // $(".canvas").off("click", ".box");
-    })
+    });
   }
 
+  // Checks if a box has colored neighbors that are orthogonal to the direction we're growing color in
   var hasColoredNeighbors = MONDRIAN.hasColoredNeighbors = function(pos, orientation) {
     var i = pos[0]
     var j = pos[1]
@@ -118,33 +123,22 @@
     $(orientation).on("click", klass, function(event) {
       var $target = $(event.currentTarget);
       var targetIndex = $target.data("id");
+
+      var jQuery_selector = orientation == ".columns" ? "[data-id$='," + targetIndex + "]']" : "[data-id^='[" + targetIndex + ",']"
+
       var delay = 0;
       var flip = $target.parent().hasClass('right') ? true : false
-
-      $(".box").each(function(index, box) {
-        var $box = $(box)
-
-        if ($box.data("id")[i] == targetIndex) {
-          if (!hasColoredNeighbors($box.data("id"), orientation)) {
-            $box.addClass("white");
-          }
-        }
-      });
-
       var boxes = [];
 
-      $(".box").each(function(index, box) {
+      $(jQuery_selector).each(function(index, box) {
         var $box = $(box);
-        // var random = (Math.floor(Math.random() * MONDRIAN.probabilityToStop));
 
-        if ($box.data("id")[i] == targetIndex) {
-          if (flip) {
-            boxes.unshift($box);
-          } else {
-            boxes.push($box);
-          }
+        if (!hasColoredNeighbors($box.data("id"), orientation)) {
+          $box.addClass("white");
         }
-      })
+
+        flip ? boxes.unshift($box) : boxes.push($box);
+      });
 
       boxes.every(function(box) {
         var random = (Math.floor(Math.random() * MONDRIAN.probabilityToStop));
@@ -152,6 +146,7 @@
         delay += MONDRIAN.delay;
         createTimer(box, delay/4.0);
 
+        // Choose a random number between 1 and probability to stop.
         if (random == 13) {
           return false;
         } else {
